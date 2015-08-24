@@ -10,83 +10,107 @@ import UIKit
 import CoreData
 
 class CompanyTableViewController: UITableViewController {
-
+	
+	@IBOutlet var CompanyTableView: UITableView!
+	
 	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+	var companies = [Company]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-
-		if let moc = self.managedObjectContext {
-			
-			// Create some dummy data to work with
-			let items = [
-				"Best Animal",
-				"Best Language",
-				"Worst Animal",
-				"Worst Language"
-			]
-			
-			// Loop through, creating items
-			for (itemTitle) in items {
-				// Create an individual item
-				Company.createInManagedObjectContext(moc,
-					name: itemTitle)
-			}
-		}
+		fetchLog()
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 	
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		// Create a new fetch request using the LogItem entity
+	func fetchLog()  {
 		let fetchRequest = NSFetchRequest(entityName: "Company")
+		
+		let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+		
+		fetchRequest.sortDescriptors = [sortDescriptor]
 		
 		do
 		{
-			let fetchResults = try managedObjectContext!.executeFetchRequest(fetchRequest) as! [Company]
-			let alert = UIAlertController(title: fetchResults[0].name,
-				message: "Hamada",
-				preferredStyle: .Alert)
 			
-			// Display the alert
-			self.presentViewController(alert,
-				animated: true,
-				completion: nil)
+		let fetchResults = try managedObjectContext!.executeFetchRequest(fetchRequest) as! [Company]
+			companies = fetchResults
+		
+		
 		}
 		catch
 		{
 			print(error)
-		}		
-		
+		}
 	}
+	
+	
+
+	@IBAction func addNewItem(sender: UIBarButtonItem) {
+		
+		let titlePrompt = UIAlertController(title: "New Company",
+			message: "Enter Company Name",
+			preferredStyle: .Alert)
+		
+		var titleTextField: UITextField?
+		titlePrompt.addTextFieldWithConfigurationHandler {
+			(textField) -> Void in
+			titleTextField = textField
+			textField.placeholder = "Name"
+		}
+		
+		titlePrompt.addAction(UIAlertAction(title: "Ok",
+			style: .Default,
+			handler: { (action) -> Void in
+				if let textField = titleTextField {
+					self.saveNewItem(textField.text!)
+				}
+		}))
+		
+		self.presentViewController(titlePrompt,
+			animated: true,
+			completion: nil)
+	}
+	
+	func saveNewItem(name : String) {
+		
+		let newCompany = Company.createInManagedObjectContext(self.managedObjectContext!, name: name)
+		self.fetchLog()
+		
+		if let newItemIndex = companies.indexOf(newCompany) {
+			let newCompanyIndexPath = NSIndexPath(forRow: newItemIndex, inSection: 0)
+			CompanyTableView.insertRowsAtIndexPaths([ newCompanyIndexPath ], withRowAnimation: .Automatic)
+		}
+	}
+	
+
 	
     // MARK: - Table view data source
 	
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+        return companies.count
     }
 
-    /*
+	
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CompanyCell", forIndexPath: indexPath)
+		
+		let company = companies[indexPath.row]
+		
 
-        // Configure the cell...
+		cell.textLabel?.text = company.name
 
         return cell
     }
-    */
+	
 
     /*
     // Override to support conditional editing of the table view.

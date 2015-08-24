@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RB7-Gy-fax">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CompanyCell" id="RB7-Gy-fax">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RB7-Gy-fax" id="uUF-Th-dlh">
@@ -28,7 +28,17 @@
                             <outlet property="delegate" destination="Sna-8w-NWw" id="k6Y-C8-H3r"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="F6r-IN-huK"/>
+                    <navigationItem key="navigationItem" id="F6r-IN-huK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HPi-eG-HnM">
+                            <connections>
+                                <action selector="addNewItem:" destination="Sna-8w-NWw" id="Kf4-xs-Fo2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="CompanyTableView" destination="rFD-MJ-ZDc" id="UA6-5y-SZq"/>
+                        <outlet property="TableView" destination="rFD-MJ-ZDc" id="7kb-Qe-8Ak"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vr4-su-AWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
