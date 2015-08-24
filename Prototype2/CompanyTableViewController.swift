@@ -7,26 +7,65 @@
 //
 
 import UIKit
+import CoreData
 
 class CompanyTableViewController: UITableViewController {
 
+	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+		if let moc = self.managedObjectContext {
+			
+			// Create some dummy data to work with
+			let items = [
+				"Best Animal",
+				"Best Language",
+				"Worst Animal",
+				"Worst Language"
+			]
+			
+			// Loop through, creating items
+			for (itemTitle) in items {
+				// Create an individual item
+				Company.createInManagedObjectContext(moc,
+					name: itemTitle)
+			}
+		}
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		// Create a new fetch request using the LogItem entity
+		let fetchRequest = NSFetchRequest(entityName: "Company")
+		
+		do
+		{
+			let fetchResults = try managedObjectContext!.executeFetchRequest(fetchRequest) as! [Company]
+			let alert = UIAlertController(title: fetchResults[0].name,
+				message: "Hamada",
+				preferredStyle: .Alert)
+			
+			// Display the alert
+			self.presentViewController(alert,
+				animated: true,
+				completion: nil)
+		}
+		catch
+		{
+			print(error)
+		}		
+		
+	}
+	
     // MARK: - Table view data source
-
+	
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
@@ -69,12 +108,6 @@ class CompanyTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
 
     /*
     // Override to support conditional rearranging of the table view.
