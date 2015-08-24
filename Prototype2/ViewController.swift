@@ -7,12 +7,55 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
-
+	
+	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+ 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+		
+		if let moc = self.managedObjectContext {
+			
+			// Create some dummy data to work with
+			var items = [
+				("Best Animal", "Dog"),
+				("Best Language","Swift"),
+				("Worst Animal","Cthulu"),
+				("Worst Language","LOLCODE")
+			]
+			
+			// Loop through, creating items
+			for (itemTitle, itemText) in items {
+				// Create an individual item
+				Company.createInManagedObjectContext(moc,
+					name: itemTitle)
+			}
+		}
+	
+	
+	}
+
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		// Create a new fetch request using the LogItem entity
+		let fetchRequest = NSFetchRequest(entityName: "Company")
+		
+		// Execute the fetch request, and cast the results to an array of LogItem objects
+		if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Company] {
+			
+			// Create an Alert, and set it's message to whatever the itemText is
+			let alert = UIAlertController(title: fetchResults[0].name,
+				message: "Hamada",
+				preferredStyle: .Alert)
+			
+			// Display the alert
+			self.presentViewController(alert,
+				animated: true,
+				completion: nil)
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
