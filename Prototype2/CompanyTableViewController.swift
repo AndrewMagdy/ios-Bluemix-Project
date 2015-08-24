@@ -33,12 +33,9 @@ class CompanyTableViewController: UITableViewController {
 		fetchRequest.sortDescriptors = [sortDescriptor]
 		
 		do
-		{
-			
+		{			
 		let fetchResults = try managedObjectContext!.executeFetchRequest(fetchRequest) as! [Company]
 			companies = fetchResults
-		
-		
 		}
 		catch
 		{
@@ -46,8 +43,32 @@ class CompanyTableViewController: UITableViewController {
 		}
 	}
 	
+	func saveNewItem(name : String) {
+		
+		let newCompany = Company.createInManagedObjectContext(self.managedObjectContext!, name: name)
+		self.fetchLog()
+		
+		if let newItemIndex = companies.indexOf(newCompany) {
+			let newCompanyIndexPath = NSIndexPath(forRow: newItemIndex, inSection: 0)
+			CompanyTableView.insertRowsAtIndexPaths([ newCompanyIndexPath ], withRowAnimation: .Automatic)
+			save()
+		}
+	}
 	
+	func save() {
+		do
+		{
+		try managedObjectContext!.save()
+		}
+		catch
+		{
+			print(error)
+		}
 
+	}
+	
+	// MARK: - Actions
+	
 	@IBAction func addNewItem(sender: UIBarButtonItem) {
 		
 		let titlePrompt = UIAlertController(title: "New Company",
@@ -73,27 +94,14 @@ class CompanyTableViewController: UITableViewController {
 			animated: true,
 			completion: nil)
 	}
-	
-	func saveNewItem(name : String) {
-		
-		let newCompany = Company.createInManagedObjectContext(self.managedObjectContext!, name: name)
-		self.fetchLog()
-		
-		if let newItemIndex = companies.indexOf(newCompany) {
-			let newCompanyIndexPath = NSIndexPath(forRow: newItemIndex, inSection: 0)
-			CompanyTableView.insertRowsAtIndexPaths([ newCompanyIndexPath ], withRowAnimation: .Automatic)
-		}
-	}
-	
-
-	
     // MARK: - Table view data source
-	
+	/*
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
+	*/
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return companies.count
@@ -105,7 +113,6 @@ class CompanyTableViewController: UITableViewController {
 		
 		let company = companies[indexPath.row]
 		
-
 		cell.textLabel?.text = company.name
 
         return cell
