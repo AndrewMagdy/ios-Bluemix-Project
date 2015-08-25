@@ -21,43 +21,7 @@ class CustomerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		if let moc = self.managedObjectContext {
-			
-			// Create some dummy data to work with
-			let companyName: String = selectedCompany!.name
-			let id: String = "TestId"
-			let customerName: String = "TestName"
-			let mobileno: String = "0100123"
-			let salary: NSNumber = 200
-			let customerType: String = "Blue"
-			let canHaveCheckBook: NSNumber = 0
-			let canHaveUnlimitedCredit: NSNumber = 0
-			let hasCheckBook: NSNumber = 0
-			let hasUnlimitedCredit: NSNumber = 0
-			let loanLimit: NSNumber = 10000
-			let creditLimit: NSNumber = 10000
-			let maxCreditLimit: NSNumber = 100000
-			let maxLoanLimit: NSNumber = 10000
-			let employeeCompany: Company = selectedCompany!
-			
-			saveNewItem(companyName,
-				id:id,
-				customerName: customerName,
-				mobileno: mobileno,
-				salary: salary,
-				customerType: customerType,
-				canHaveCheckBook: canHaveCheckBook,
-				canHaveUnlimitedCredit: canHaveUnlimitedCredit,
-				hasCheckBook: hasCheckBook,
-				hasUnlimitedCredit: hasUnlimitedCredit,
-				loanLimit: loanLimit,
-				creditLimit: creditLimit,
-				maxCreditLimit: maxCreditLimit,
-				maxLoanLimit: maxLoanLimit,
-				employeeCompany: employeeCompany)
-			
-
-		}
+		fetchLog();
 
 
 		
@@ -68,7 +32,11 @@ class CustomerTableViewController: UITableViewController {
 		
 		let sortDescriptor = NSSortDescriptor(key: "customerName", ascending: true)
 		
+		let predicate = NSPredicate(format: "employeeCompany == %@", selectedCompany!)
+		
 		fetchRequest.sortDescriptors = [sortDescriptor]
+		
+		fetchRequest.predicate = predicate
 		
 		do
 		{
