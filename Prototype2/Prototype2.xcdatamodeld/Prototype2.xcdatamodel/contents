@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14C1514" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8175.2" systemVersion="14F27" minimumToolsVersion="Automatic">
     <entity name="Company" representedClassName="Prototype2.Company" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="companyHasEmployees" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Customer" inverseName="employeeCompany" inverseEntity="Customer" syncable="YES"/>
+    </entity>
+    <entity name="Customer" representedClassName="Prototype2.Customer" syncable="YES">
+        <attribute name="canHaveCheckBook" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="canHaveUnlimitedCredit" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="companyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creditLimit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="customerName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customerType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasCheckBook" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasUnlimitedCredit" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loanLimit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxCreditLimit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxLoanLimit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="mobileno" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="employeeCompany" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="companyHasEmployees" inverseEntity="Company" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Company" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Company" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Customer" positionX="126" positionY="-12" width="162" height="268"/>
     </elements>
 </model>
