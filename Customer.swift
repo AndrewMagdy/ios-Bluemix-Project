@@ -26,6 +26,7 @@ class Customer: NSManagedObject {
 	 creditLimit: NSNumber,
 	 maxCreditLimit: NSNumber,
 	 maxLoanLimit: NSNumber,
+	 supportingDocument: NSData,
 	 employeeCompany: Company) -> Customer {
 		
 		let newItem = NSEntityDescription.insertNewObjectForEntityForName("Customer", inManagedObjectContext: moc) as! Customer
@@ -42,6 +43,7 @@ class Customer: NSManagedObject {
 		newItem.creditLimit = creditLimit
 		newItem.maxCreditLimit = maxCreditLimit
 		newItem.maxLoanLimit = maxLoanLimit
+		newItem.supportingDocument = supportingDocument
 		newItem.employeeCompany = employeeCompany
 
 		

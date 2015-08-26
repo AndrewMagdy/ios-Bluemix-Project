@@ -45,6 +45,8 @@ class CompanyTableViewController: UITableViewController {
 	
 	func saveNewItem(name : String) {
 		
+		if (name.characters.count > 0)
+		{
 		let newCompany = Company.createInManagedObjectContext(self.managedObjectContext!, name: name)
 		self.fetchLog()
 		
@@ -52,6 +54,7 @@ class CompanyTableViewController: UITableViewController {
 			let newCompanyIndexPath = NSIndexPath(forRow: newItemIndex, inSection: 0)
 			CompanyTableView.insertRowsAtIndexPaths([ newCompanyIndexPath ], withRowAnimation: .Automatic)
 			save()
+		}
 		}
 	}
 	
@@ -82,6 +85,7 @@ class CompanyTableViewController: UITableViewController {
 			textField.placeholder = "Name"
 		}
 		
+		
 		titlePrompt.addAction(UIAlertAction(title: "Ok",
 			style: .Default,
 			handler: { (action) -> Void in
@@ -89,6 +93,9 @@ class CompanyTableViewController: UITableViewController {
 					self.saveNewItem(textField.text!)
 				}
 		}))
+		
+		titlePrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+		
 		
 		self.presentViewController(titlePrompt,
 			animated: true,
