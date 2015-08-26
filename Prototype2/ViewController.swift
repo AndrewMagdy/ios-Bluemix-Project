@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 		if let moc = self.managedObjectContext {
 			
 			// Create some dummy data to work with
-			var items = [
+			let items = [
 				("Best Animal", "Dog"),
 				("Best Language","Swift"),
 				("Worst Animal","Cthulu"),
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
 		let fetchRequest = NSFetchRequest(entityName: "Company")
 		
 		// Execute the fetch request, and cast the results to an array of LogItem objects
-		if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Company] {
+		if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest) as? [Company] {
 			
 			// Create an Alert, and set it's message to whatever the itemText is
 			let alert = UIAlertController(title: fetchResults[0].name,

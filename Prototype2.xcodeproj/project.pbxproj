@@ -12,9 +12,13 @@
 		4C6CDA401B8AF70600F9583C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6CDA3E1B8AF70600F9583C /* Main.storyboard */; };
 		4C6CDA421B8AF70600F9583C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6CDA411B8AF70600F9583C /* Images.xcassets */; };
 		4C6CDA451B8AF70700F9583C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6CDA431B8AF70700F9583C /* LaunchScreen.xib */; };
-		4C6CDA511B8AF70700F9583C /* Prototype2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CDA501B8AF70700F9583C /* Prototype2Tests.swift */; };
 		4C6CDA5B1B8AF90700F9583C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CDA5A1B8AF90700F9583C /* Company.swift */; };
 		4C6CDA5D1B8B01F000F9583C /* CompanyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CDA5C1B8B01F000F9583C /* CompanyTableViewController.swift */; };
+		4C97FFB21B8CAA0000D42D1B /* NewCustomerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97FFB11B8CAA0000D42D1B /* NewCustomerTableViewController.swift */; };
+		4C97FFB41B8D330D00D42D1B /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97FFB31B8D330D00D42D1B /* Customer+CoreDataProperties.swift */; };
+		4C97FFB61B8D4F1C00D42D1B /* ViewCustomerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97FFB51B8D4F1C00D42D1B /* ViewCustomerTableViewController.swift */; };
+		4CBA67081B8C7C8100D79617 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA67061B8C7C8100D79617 /* Customer.swift */; };
+		4CBA670A1B8C7EAA00D79617 /* CustomerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA67091B8C7EAA00D79617 /* CustomerTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +40,13 @@
 		4C6CDA411B8AF70600F9583C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4C6CDA441B8AF70700F9583C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4C6CDA4A1B8AF70700F9583C /* Prototype2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Prototype2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C6CDA4F1B8AF70700F9583C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C6CDA501B8AF70700F9583C /* Prototype2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prototype2Tests.swift; sourceTree = "<group>"; };
 		4C6CDA5A1B8AF90700F9583C /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		4C6CDA5C1B8B01F000F9583C /* CompanyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyTableViewController.swift; sourceTree = "<group>"; };
+		4C97FFB11B8CAA0000D42D1B /* NewCustomerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCustomerTableViewController.swift; sourceTree = "<group>"; };
+		4C97FFB31B8D330D00D42D1B /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Customer+CoreDataProperties.swift"; path = "../Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4C97FFB51B8D4F1C00D42D1B /* ViewCustomerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCustomerTableViewController.swift; sourceTree = "<group>"; };
+		4CBA67061B8C7C8100D79617 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = ../Customer.swift; sourceTree = "<group>"; };
+		4CBA67091B8C7EAA00D79617 /* CustomerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				4C6CDA341B8AF70600F9583C /* Prototype2 */,
-				4C6CDA4D1B8AF70700F9583C /* Prototype2Tests */,
 				4C6CDA331B8AF70600F9583C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +87,8 @@
 		4C6CDA341B8AF70600F9583C /* Prototype2 */ = {
 			isa = PBXGroup;
 			children = (
+				4C97FFB31B8D330D00D42D1B /* Customer+CoreDataProperties.swift */,
+				4CBA67061B8C7C8100D79617 /* Customer.swift */,
 				4C6CDA5A1B8AF90700F9583C /* Company.swift */,
 				4C6CDA371B8AF70600F9583C /* AppDelegate.swift */,
 				4C6CDA3E1B8AF70600F9583C /* Main.storyboard */,
@@ -89,6 +97,9 @@
 				4C6CDA391B8AF70600F9583C /* Prototype2.xcdatamodeld */,
 				4C6CDA351B8AF70600F9583C /* Supporting Files */,
 				4C6CDA5C1B8B01F000F9583C /* CompanyTableViewController.swift */,
+				4CBA67091B8C7EAA00D79617 /* CustomerTableViewController.swift */,
+				4C97FFB11B8CAA0000D42D1B /* NewCustomerTableViewController.swift */,
+				4C97FFB51B8D4F1C00D42D1B /* ViewCustomerTableViewController.swift */,
 			);
 			path = Prototype2;
 			sourceTree = "<group>";
@@ -97,23 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				4C6CDA361B8AF70600F9583C /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4C6CDA4D1B8AF70700F9583C /* Prototype2Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C6CDA501B8AF70700F9583C /* Prototype2Tests.swift */,
-				4C6CDA4E1B8AF70700F9583C /* Supporting Files */,
-			);
-			path = Prototype2Tests;
-			sourceTree = "<group>";
-		};
-		4C6CDA4E1B8AF70700F9583C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4C6CDA4F1B8AF70700F9583C /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -169,6 +163,7 @@
 				TargetAttributes = {
 					4C6CDA311B8AF70600F9583C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = P57Y2H6B3C;
 					};
 					4C6CDA491B8AF70700F9583C = {
 						CreatedOnToolsVersion = 6.4;
@@ -221,8 +216,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C6CDA381B8AF70600F9583C /* AppDelegate.swift in Sources */,
+				4C97FFB41B8D330D00D42D1B /* Customer+CoreDataProperties.swift in Sources */,
+				4C97FFB21B8CAA0000D42D1B /* NewCustomerTableViewController.swift in Sources */,
+				4CBA670A1B8C7EAA00D79617 /* CustomerTableViewController.swift in Sources */,
 				4C6CDA3B1B8AF70600F9583C /* Prototype2.xcdatamodeld in Sources */,
+				4CBA67081B8C7C8100D79617 /* Customer.swift in Sources */,
 				4C6CDA5D1B8B01F000F9583C /* CompanyTableViewController.swift in Sources */,
+				4C97FFB61B8D4F1C00D42D1B /* ViewCustomerTableViewController.swift in Sources */,
 				4C6CDA5B1B8AF90700F9583C /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,7 +231,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C6CDA511B8AF70700F9583C /* Prototype2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,11 +352,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Prototype2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "proto.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -365,11 +367,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Prototype2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "proto.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

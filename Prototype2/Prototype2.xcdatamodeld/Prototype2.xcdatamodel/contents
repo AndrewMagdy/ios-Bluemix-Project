@@ -19,10 +19,11 @@
         <attribute name="maxLoanLimit" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="mobileno" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="salary" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="supportingDocument" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="employeeCompany" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="companyHasEmployees" inverseEntity="Company" syncable="YES"/>
     </entity>
     <elements>
         <element name="Company" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="Customer" positionX="126" positionY="-12" width="162" height="268"/>
+        <element name="Customer" positionX="126" positionY="-12" width="162" height="285"/>
     </elements>
 </model>
