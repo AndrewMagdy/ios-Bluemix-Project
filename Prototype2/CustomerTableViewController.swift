@@ -14,12 +14,12 @@ class CustomerTableViewController: UITableViewController {
 	@IBOutlet var customerTableView: UITableView!
 	
 	var selectedCompany:Company?
-	
 	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 	var customers = [Customer]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.navigationItem.title = selectedCompany!.name
 		
 		fetchLog();
 

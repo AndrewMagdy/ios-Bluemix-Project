@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Company Table View Controller-->
+        <!--Companies-->
         <scene sceneID="8Jj-4p-Pk4">
             <objects>
                 <tableViewController id="Sna-8w-NWw" customClass="CompanyTableViewController" customModule="Prototype2" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                             <outlet property="delegate" destination="Sna-8w-NWw" id="k6Y-C8-H3r"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="F6r-IN-huK">
+                    <navigationItem key="navigationItem" title="Companies" id="F6r-IN-huK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="HPi-eG-HnM">
                             <connections>
                                 <action selector="addNewItem:" destination="Sna-8w-NWw" id="Kf4-xs-Fo2"/>

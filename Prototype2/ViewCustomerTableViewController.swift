@@ -26,6 +26,7 @@ class ViewCustomerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.navigationItem.title = selectedCustomer!.customerName
 		self.supportingDocument.image = UIImage(data: selectedCustomer!.supportingDocument!)
 		self.CompanyName.text = selectedCustomer!.companyName
 		self.CustomerName.text = selectedCustomer!.customerName

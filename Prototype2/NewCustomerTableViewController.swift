@@ -14,6 +14,8 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 	
 	let url : String = "https://brsv2-6c316cbf.ng.bluemix.net/DecisionService/rest/tiersRuleApp/1.0/tiersRuleProject/1.0"
 	
+	let pass: String = "Basic cmVzQWRtaW46czR2NXU1YTU4OGM5"
+	
 	let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 	
 	var selectedCompany:Company?
@@ -40,6 +42,7 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.navigationItem.title = "New Customer at \(selectedCompany!.name)"
 		
 		NameTextField.delegate = self
 		IdTextField.delegate = self
@@ -99,34 +102,11 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 	
 	func addImage()
 	{
-		let titlePrompt = UIAlertController(title: "Customer Has Been Verified",
-			message: "Add Supporting Document",
-			preferredStyle: .Alert)
+		let imagePickerController = UIImagePickerController()
+		imagePickerController.sourceType = .Camera
+		imagePickerController.delegate = self
+		self.presentViewController(imagePickerController, animated: true, completion: nil)
 		
-		
-		titlePrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-		
-		titlePrompt.addAction(UIAlertAction(title: "Add",
-			style: .Default,
-			handler: { (action) -> Void in
-				let imagePickerController = UIImagePickerController()
-				
-				// Only allow photos to be picked, not taken.
-				imagePickerController.sourceType = .Camera
-				
-				// Make sure ViewController is notified when the user picks an image.
-				imagePickerController.delegate = self
-				
-				self.presentViewController(imagePickerController, animated: true, completion: nil)
-				
-				
-				
-				
-		}))
-		
-		self.presentViewController(titlePrompt,
-			animated: true,
-			completion: nil)
 	}
 	func checkInternet ()
 	{
@@ -235,7 +215,7 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 		request.URL = NSURL(string: url)
 		request.HTTPMethod = "POST"
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.addValue("Basic cmVzQWRtaW46czR2NXU1YTU4OGM5", forHTTPHeaderField: "Authorization")
+		request.addValue(pass, forHTTPHeaderField: "Authorization")
 		
 		
 		do {
@@ -296,8 +276,9 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 	
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 		supportingDocument = info[UIImagePickerControllerOriginalImage] as? UIImage
-		dismissViewControllerAnimated(true, completion: nil)
 		self.saveNewItem()
+		//dismissViewControllerAnimated(true, completion: nil)
+
 	}
 	
 	// MARK: - Actions
