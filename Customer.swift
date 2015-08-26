@@ -39,6 +39,8 @@ class Customer: NSManagedObject {
 		newItem.customerType = customerType
 		newItem.canHaveCheckBook = canHaveCheckBook
 		newItem.canHaveUnlimitedCredit = canHaveUnlimitedCredit
+		newItem.hasCheckBook = hasCheckBook
+		newItem.hasUnlimitedCredit = hasUnlimitedCredit
 		newItem.loanLimit = loanLimit
 		newItem.creditLimit = creditLimit
 		newItem.maxCreditLimit = maxCreditLimit

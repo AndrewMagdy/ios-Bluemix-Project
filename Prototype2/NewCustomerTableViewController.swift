@@ -65,11 +65,13 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 		let hasCheckBook: Bool   = customerData!["requestedCheckBook"] as! Bool
 		let hasUnlimitedCredit: Bool = customerData!["requestedUnlimitedCreditCard"] as! Bool
 		
+		let canHaveCheckBook: Bool = customerData!["hasCheckBook"] as! Bool
+		let canHaveUnlimitedCredit: Bool = customerData!["hasUnlimitedCreditCard"] as! Bool
+		
 		let maxCreditLimit: Double =  customerData!["limitOfCreditCard"] as! Double
 		let maxLoanLimit :Double =  customerData!["limitOfLoan"] as! Double
 		
-		let canHaveCheckBook: Bool = customerData!["hasCheckBook"] as! Bool
-		let canHaveUnlimitedCredit: Bool = customerData!["hasUnlimitedCreditCard"] as! Bool
+		
 		
 		let supportingDocument = UIImageJPEGRepresentation(self.supportingDocument! ,1 )
 		
@@ -110,7 +112,7 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 				let imagePickerController = UIImagePickerController()
 				
 				// Only allow photos to be picked, not taken.
-				imagePickerController.sourceType = .PhotoLibrary
+				imagePickerController.sourceType = .Camera
 				
 				// Make sure ViewController is notified when the user picks an image.
 				imagePickerController.delegate = self
@@ -143,12 +145,13 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 	
 	func verifyFail ()
 	{
+		print(customerData)
 		if let messageArray: [String]  = customerData!["messages"] as? [String]
 		{
 			var messages :String = ""
 			
 			for message in messageArray {
-				messages += message + " "
+				messages += message + "\n"
 			}
 			let titlePrompt = UIAlertController(title: "Error Verifying Customer",
 				message: messages,
@@ -201,11 +204,11 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 		
 		if let parseJSON = json {
 			if let customerData: AnyObject = parseJSON["theCustomer"] {
+				self.customerData = customerData
 				if let approved   = customerData["approved"] as? Bool {
 					if approved  {
-						self.customerData = customerData
 						dispatch_async(dispatch_get_main_queue()) {
-							self.addImage()
+						self.addImage()
 						}
 					}
 					else{
@@ -292,7 +295,7 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 	}
 	
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-		supportingDocument = info[UIImagePickerControllerOriginalImage] as! UIImage
+		supportingDocument = info[UIImagePickerControllerOriginalImage] as? UIImage
 		dismissViewControllerAnimated(true, completion: nil)
 		self.saveNewItem()
 	}
@@ -312,6 +315,23 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 				canVerify = false
 			}
 		}
+		if CreditCardSwitch.on && CreditLimitTextField.text!.isEmpty && !UnlimitedCreditSwitch.on
+		{
+			CreditLimitTextField.layer.borderColor = UIColor.redColor().CGColor
+			CreditLimitTextField.layer.borderWidth = 2
+			CreditLimitTextField.placeholder = "Field Required"
+			canVerify = false
+		}
+		
+		if LoanSwitch.on && LoanLimitTextField.text!.isEmpty
+		{
+			LoanLimitTextField.layer.borderColor = UIColor.redColor().CGColor
+			LoanLimitTextField.layer.borderWidth = 2
+			LoanLimitTextField.placeholder = "Field Required"
+			canVerify = false
+		}
+		
+		
 		if (canVerify)
 		{
 			post()
@@ -342,6 +362,8 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 				self.LoanLimitTextField.enabled = false
 				self.LoanLimitTextField.layer.borderWidth = 0
 				self.LoanLimitTextField.placeholder = ""
+				self.LoanLimitTextField.text = ""
+
 			}
 		}
 		else
@@ -352,6 +374,7 @@ class NewCustomerTableViewController: UITableViewController, UITextFieldDelegate
 				self.CreditLimitTextField.enabled = false
 				self.CreditLimitTextField.layer.borderWidth = 0
 				self.CreditLimitTextField.placeholder = ""
+				self.CreditLimitTextField.text = ""
 				
 			}
 				

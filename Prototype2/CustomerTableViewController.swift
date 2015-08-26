@@ -23,8 +23,6 @@ class CustomerTableViewController: UITableViewController {
 		
 		fetchLog();
 
-
-		
     }
 	
 	func fetchLog()  {
@@ -100,6 +98,10 @@ class CustomerTableViewController: UITableViewController {
 				let customer = customers[row]
 				controller.selectedCustomer = customer
 			}
+			else if (segue.identifier == "AddCustomer"){
+				let controller = (segue.destinationViewController as! NewCustomerTableViewController)
+				controller.selectedCompany = self.selectedCompany
+		}
 		
     }
 		override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
